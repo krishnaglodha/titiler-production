@@ -1,0 +1,10 @@
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/titiler/app
+Environment="PATH=/opt/titiler/app/env/bin"
+ExecStart=/opt/titiler/app/env/bin/gunicorn app.main:app \
+    --workers 4 \
+    --worker-class uvicorn.workers.UvicornWorker \
+    --bind 127.0.0.1:8044
+Restart=always
